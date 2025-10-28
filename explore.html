@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore Startups - StartupHub</title>
+    
+    <!-- Critical CSS inlined for instant render -->
+    <style>
+        /* Prevent FOUC and layout shift */
+        body:not(.auth-ready) .nav-item-guest,
+        body:not(.auth-ready) .nav-item-authed {
+            display: none !important;
+            visibility: hidden;
+        }
+        .main-header { min-height: 80px; }
+        .header-actions { min-height: 40px; }
+        /* Skeleton loader */
+        body:not(.auth-ready) .header-actions::before {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 40px;
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+            border-radius: 8px;
+        }
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+    </style>
+    
+    <!-- Preconnect to Firebase for faster loading -->
+    <link rel="preconnect" href="https://www.gstatic.com">
+    <link rel="dns-prefetch" href="https://www.gstatic.com">
+    
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="index.html" class="logo">StartupHub</a>
+            <nav class="main-nav">
+                <ul>
+                    <li class="nav-item-guest"><a href="index.html">Home</a></li>
+                    <li class="nav-item-authed"><a href="explore.html" class="active">Explore</a></li>
+                    <li class="nav-item-guest"><a href="pricing.html">Pricing</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <select id="currency-selector" class="btn-secondary currency-selector">
+                    <option value="DZD">DA</option>
+                    <option value="USD">USD</option>
+                    <option value="EUR">EUR</option>
+                    <option value="GBP">GBP</option>
+                    <option value="MAD">MAD</option>
+                    <option value="TND">TND</option>
+                    <option value="EGP">EGP</option>
+                    <option value="SAR">SAR</option>
+                    <option value="AED">AED</option>
+                    <option value="CAD">CAD</option>
+                    <option value="JPY">JPY</option>
+                    <option value="CNY">CNY</option>
+                    <option value="INR">INR</option>
+                </select>
+                
+                <button id="theme-toggle" class="btn-secondary">
+                    <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                    <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                </button>
+                
+                <a href="login.html" id="login-btn" class="btn btn-secondary nav-item-guest">Log In</a>
+                <a href="signup.html" class="btn btn-primary nav-item-guest">Sign Up</a>
+            
+            <div id="notification-bell" class="notification-bell nav-item-authed">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                    <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                </svg>
+                <span id="notification-badge" class="notification-badge">0</span>
+            </div>
+                
+                <div id="header-profile-trigger" class="user-avatar-link nav-item-authed">
+                    <div id="header-avatar-initials" class="user-avatar">?</div>
+                </div>
+            
+                <div id="header-profile-dropdown" class="profile-dropdown-header">
+                    <a href="dashboard.html">Dashboard</a>
+                    <a href="#" id="header-dropdown-logout-btn">Logout</a>
+                </div>
+            
+            <div id="notification-dropdown" class="notification-dropdown">
+                <div class="notification-dropdown-header">
+                    <h3>Notifications</h3>
+                    <button id="mark-all-read-btn" class="btn-text">Mark all as read</button>
+                </div>
+                <div id="notification-list" class="notification-list">
+                    <p class="notification-empty">No notifications yet</p>
+                </div>
+            </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container explore-layout">
+            
+            <aside class="filter-panel">
+                <h2>Filters</h2>
+                <form id="filter-form">
+                    <div class="input-group">
+                        <label for="filter-keyword">Keyword</label>
+                        <input type="text" id="filter-keyword" class="input-field" placeholder="Search by name or description...">
+                    </div>
+                    <div class="input-group">
+                        <label for="filter-category">Category</label>
+                        <select id="filter-category" class="input-field">
+                            <option value="">All Categories</option>
+                            <option value="SaaS">SaaS</option>
+                            <option value="FinTech">FinTech</option>
+                            <option value="BioTech">BioTech</option>
+                            <option value="HealthTech">HealthTech</option>
+                            <option value="EdTech">EdTech</option>
+                            <option value="E-commerce">E-commerce</option>
+                            <option value="AI/ML">AI/ML</option>
+                            <option value="Blockchain">Blockchain</option>
+                            <option value="CleanTech">CleanTech</option>
+                            <option value="AgriTech">AgriTech</option>
+                            <option value="Real Estate">Real Estate</option>
+                            <option value="Gaming">Gaming</option>
+                            <option value="Media">Media</option>
+                            <option value="Travel">Travel</option>
+                            <option value="Food & Beverage">Food & Beverage</option>
+                            </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="filter-funding-min">Min Funding Goal</label>
+                        <select id="filter-funding-min" class="input-field">
+                            <option value="0">Any Amount</option>
+                            <option value="100000">$100,000+</option>
+                            <option value="250000">$250,000+</option>
+                            <option value="500000">$500,000+</option>
+                            <option value="1000000">$1,000,000+</option>
+                            <option value="2000000">$2,000,000+</option>
+                            <option value="5000000">$5,000,000+</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="filter-funding-max">Max Funding Goal</label>
+                        <select id="filter-funding-max" class="input-field">
+                            <option value="999999999">No Limit</option>
+                            <option value="500000">$500,000</option>
+                            <option value="1000000">$1,000,000</option>
+                            <option value="2000000">$2,000,000</option>
+                            <option value="5000000">$5,000,000</option>
+                            <option value="10000000">$10,000,000</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-bottom: 10px;">Apply Filters</button>
+                    <button type="button" id="clear-filters-btn" class="btn btn-secondary" style="width: 100%;">Clear Filters</button>
+                </form>
+            </aside>
+
+            <section class="results-grid-container">
+                <div class="input-group">
+                    <input type="search" id="search-bar" class="input-field" placeholder="Search all startups...">
+                </div>
+                <div id="explore-project-grid" class="results-grid">
+                    <p>Loading startups...</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2025 StartupHub. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
+    
+    <script src="js/main.js"></script>
+
+</body>
+</html>

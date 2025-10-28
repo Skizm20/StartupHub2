@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing - StartupHub</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header class="main-header">
+    <div class="container">
+        <a href="index.html" class="logo">StartupHub</a>
+        <nav class="main-nav">
+            <ul>
+                <li class="nav-item-guest"><a href="index.html">Home</a></li>
+                <li class="nav-item-authed"><a href="explore.html">Explore</a></li>
+                <li class="nav-item-guest"><a href="pricing.html" class="active">Pricing</a></li>
+            </ul>
+        </nav>
+        <div class="header-actions">
+            <select id="currency-selector" class="btn-secondary currency-selector">
+                <option value="DZD">DA</option>
+                <option value="USD">USD</option>
+                <option value="EUR">EUR</option>
+                <option value="GBP">GBP</option>
+                <option value="MAD">MAD</option>
+                <option value="TND">TND</option>
+                <option value="EGP">EGP</option>
+                <option value="SAR">SAR</option>
+                <option value="AED">AED</option>
+                <option value="CAD">CAD</option>
+                <option value="JPY">JPY</option>
+                <option value="CNY">CNY</option>
+                <option value="INR">INR</option>
+            </select>
+            
+            <button id="theme-toggle" class="btn-secondary">
+                <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            </button>
+            
+            <a href="login.html" id="login-btn" class="btn btn-secondary nav-item-guest">Log In</a>
+            <a href="signup.html" class="btn btn-primary nav-item-guest">Sign Up</a>
+            
+            <div id="header-profile-trigger" class="user-avatar-link nav-item-authed">
+                <div id="header-avatar-initials" class="user-avatar">?</div>
+            </div>
+
+            <div id="header-profile-dropdown" class="profile-dropdown-header">
+                <a href="dashboard.html">Dashboard</a>
+                <a href="#" id="header-dropdown-logout-btn">Logout</a>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <main>
+        <div class="container">
+            <div class="pricing-header">
+                <h1>Simple, transparent pricing.</h1>
+                <p>Choose the plan that's right for your goals, whether you're starting out, scaling up, or looking to invest.</p>
+            </div>
+
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-card-header">
+                        <h3>Student Free</h3>
+                        <div class="price">$0 <span>/ forever</span></div>
+                        <p>For students and hobbyists looking to browse.</p>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>Browse public startup profiles</li>
+                        <li>Limited search functionality</li>
+                        <li>1 project slot (not public)</li>
+                        <li>Community access</li>
+                    </ul>
+                    <a href="#" class="btn btn-secondary">Get Started</a>
+                </div>
+
+                <div class="pricing-card highlight">
+                    <div class="pricing-card-header">
+                        <h3>Founder Pro</h3>
+                        <div class="price">$20 <span>/ mo</span></div>
+                        <p>For serious founders ready to raise capital.</p>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>Up to 5 public project slots</li>
+                        <li>Appear in investor searches</li>
+                        <li>Receive investment offers</li>
+                        <li>Direct messaging with investors</li>
+                        <li>Basic project analytics</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary">Choose Founder</a>
+                </div>
+
+                <div class="pricing-card">
+                    <div class="pricing-card-header">
+                        <h3>Investor Access</h3>
+                        <div class="price">$30 <span>/ mo</span></div>
+                        <p>For VCs, angels, and funds looking for deals.</p>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>Unlimited startup browsing</li>
+                        <li>Advanced search & filters</li>
+                        <li>Send investment offers</li>
+                        <li>Direct messaging with founders</li>
+                        <li>Access to founder contact details</li>
+                    </ul>
+                    <a href="#" class="btn btn-secondary">Choose Investor</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2025 StartupHub. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
+    
+    <script src="js/main.js"></script>
+
+</body>
+</html>

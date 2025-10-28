@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AuraTech Profile - StartupHub</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header class="main-header">
+    <div class="container">
+        <a href="index.html" class="logo">StartupHub</a>
+        <nav class="main-nav">
+            <ul>
+                <li class="nav-item-guest"><a href="index.html">Home</a></li>
+                <li class="nav-item-authed"><a href="explore.html">Explore</a></li>
+                <li class="nav-item-guest"><a href="pricing.html">Pricing</a></li>
+            </ul>
+        </nav>
+        <div class="header-actions">
+            <button id="theme-toggle" class="btn-secondary">
+                <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            </button>
+            
+            <a href="login.html" id="login-btn" class="btn btn-secondary nav-item-guest">Log In</a>
+            <a href="signup.html" class="btn btn-primary nav-item-guest">Sign Up</a>
+            
+            <div id="header-profile-trigger" class="user-avatar-link nav-item-authed">
+                <div id="header-avatar-initials" class="user-avatar">?</div>
+            </div>
+
+            <div id="header-profile-dropdown" class="profile-dropdown-header">
+                <a href="dashboard.html">Dashboard</a>
+                <a href="#" id="header-dropdown-logout-btn">Logout</a>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <main>
+        <div class="container">
+            <section id="startup-header-loading" class="profile-header">
+                 <div class="profile-logo">?</div>
+                 <div class="profile-info">
+                    <h1>Loading...</h1>
+                    <p class="mission">Fetching project details...</p>
+                 </div>
+            </section>
+
+            <section id="startup-header-loaded" class="profile-header" style="display: none;">
+                <div id="startup-logo" class="profile-logo">?</div>
+                <div class="profile-info">
+                    <h1 id="startup-title">Project Title</h1>
+                    <p id="startup-mission" class="mission">Project Mission</p>
+                </div>
+                <div id="startup-actions" class="profile-actions">
+                    <button id="message-founder-btn" class="btn btn-secondary">Message Founder</button>
+                    <button id="add-to-watchlist-btn" class="btn btn-primary">Add to Watchlist</button>
+                </div>
+            </section>
+
+            <div class="profile-layout">
+                <section class="profile-main">
+                    <h2>Pitch Deck</h2>
+                    <div class="pitch-deck-placeholder">
+                        <p>Pitch Deck Viewer (PDF/Slides)</p>
+                    </div>
+
+                    <h2>About This Project</h2>
+                    <p id="startup-description">Loading description...</p>
+
+                    <h2>The Team</h2>
+                    <p>Founder: <span id="startup-founder-name">...</span></p>
+                    <div class="team-grid">
+                        <div class="team-member">
+                            <div class="team-avatar"></div>
+                            <h4>Dr. Elena Reed</h4>
+                            <p>CEO & Co-Founder</p>
+                        </div>
+                        <div class="team-member">
+                            <div class="team-avatar"></div>
+                            <h4>Rajeev Singh</h4>
+                            <p>CTO & Co-Founder</p>
+                        </div>
+                    </div>
+                </section>
+
+                <aside class="profile-sidebar">
+                    <div class="financial-card">
+                        <h3>Financials</h3>
+                        <div class="financial-metric">
+                            <span>Funding Goal (Seed)</span>
+                            <div id="startup-funding-goal" class="amount">$0 USD</div>
+                        </div>
+                        <div class="financial-metric">
+                            <span>Profit Share Offered</span>
+                            <div id="startup-profit-share" class="percent">0%</div>
+                        </div>
+                        <button id="make-offer-btn" class="btn btn-primary" style="width: 100%; display: none;">Make Investment Offer</button>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2025 StartupHub. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Message Modal -->
+    <div class="modal-overlay" id="message-modal-overlay">
+        <div class="auth-modal" id="message-modal">
+            <h2>Message Founder</h2>
+            <form id="send-message-form">
+                <input type="hidden" id="message-project-id">
+                <input type="hidden" id="message-founder-id">
+                <input type="hidden" id="message-founder-name">
+                
+                <div class="input-group">
+                    <label for="message-subject">Subject</label>
+                    <input type="text" id="message-subject" class="input-field" placeholder="Investment Inquiry" required>
+                </div>
+                
+                <div class="input-group">
+                    <label for="message-content">Message</label>
+                    <textarea id="message-content" class="input-field" rows="6" placeholder="Write your message here..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                <button type="button" id="close-message-modal-btn" class="btn btn-secondary" style="width: 100%; margin-top: 10px;">Cancel</button>
+                
+                <p id="message-error" class="auth-error"></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Investment Offer Modal -->
+    <div class="modal-overlay" id="investment-modal-overlay">
+        <div class="auth-modal" id="investment-modal">
+            <h2>Make Investment Offer</h2>
+            <form id="investment-offer-form">
+                <input type="hidden" id="investment-project-id">
+                <input type="hidden" id="investment-founder-id">
+                <input type="hidden" id="investment-project-title">
+                
+                <div class="input-group">
+                    <label for="investment-amount">Investment Amount (USD)</label>
+                    <input type="number" id="investment-amount" class="input-field" placeholder="50000" min="1000" required>
+                    <small style="color: var(--color-text-secondary);">Minimum investment: $1,000</small>
+                </div>
+                
+                <div class="input-group">
+                    <label for="investment-equity">Equity Requested (%)</label>
+                    <input type="number" id="investment-equity" class="input-field" placeholder="10" min="1" max="100" step="0.1" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="investment-terms">Additional Terms (Optional)</label>
+                    <textarea id="investment-terms" class="input-field" rows="4" placeholder="Any additional terms or conditions for this investment..."></textarea>
+                </div>
+
+                <div class="input-group">
+                    <label for="investment-message">Message to Founder</label>
+                    <textarea id="investment-message" class="input-field" rows="3" placeholder="Introduce yourself and explain why you're interested..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Investment Offer</button>
+                <button type="button" id="close-investment-modal-btn" class="btn btn-secondary" style="width: 100%; margin-top: 10px;">Cancel</button>
+                
+                <p id="investment-error" class="auth-error"></p>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
+    
+    <script src="js/main.js"></script>
+
+</body>
+</html>
